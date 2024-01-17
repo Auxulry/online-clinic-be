@@ -15,18 +15,22 @@ class PoliSeeder extends Seeder
     {
         Poli::create([
             'name' => 'Poli Umum',
+            'doctor_name' => 'Ahmad',
             'image' => 'dump/online-clinic-sample-1.png',
         ]);
         Poli::create([
             'name' => 'Poli Kandungan',
+            'doctor_name' => 'Ahmad',
             'image' => 'dump/online-clinic-sample-2.png',
         ]);
         Poli::create([
             'name' => 'Poli Gigi',
+            'doctor_name' => 'Ahmad',
             'image' => 'dump/online-clinic-sample-3.png',
         ]);
         Poli::create([
             'name' => 'Poli THT',
+            'doctor_name' => 'Ahmad',
             'image' => 'dump/online-clinic-sample-3.png',
         ]);
     }

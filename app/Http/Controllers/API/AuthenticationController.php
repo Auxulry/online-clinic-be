@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Illuminate\Http\Request;
 
 class AuthenticationController extends ApiController
 {
@@ -47,5 +48,10 @@ class AuthenticationController extends ApiController
         ]);
 
         return $this->successResponse(Response::HTTP_CREATED, 'Register Success', ['accessToken' => $user->createToken('PAT')->accessToken]);
+    }
+
+    public function me(Request $request): JsonResponse
+    {
+        return $this->successResponse(Response::HTTP_OK, 'Get Profile Success', $request->user());
     }
 }

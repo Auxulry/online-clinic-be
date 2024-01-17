@@ -24,12 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('authentication')->namespace('API')->group(function () {
     Route::post('login', [AuthenticationController::class, 'login']);
     Route::post('register', [AuthenticationController::class, 'register']);
-//
-//    Route::middleware('auth:api')->get('me', [AuthenticationController::class, 'me']);
+    Route::middleware('auth:api')->get('me', [AuthenticationController::class, 'me']);
 });
 
 Route::get('polis', [PoliController::class, 'index']);
 Route::middleware('auth:api')->post('queue', [QueueController::class, 'createQueue']);
 Route::middleware('auth:api')->get('queue', [QueueController::class, 'getQueue']);
-
+Route::middleware('auth:api')->post('polis', [PoliController::class, 'create']);
 

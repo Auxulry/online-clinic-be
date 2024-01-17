@@ -47,4 +47,31 @@ class PoliController extends ApiController
             'totalItems' => $totalItems
         ]);
     }
+
+    public function create(Request $request)
+    {
+        if (!$request->user()->is_admin) {
+            return $this->errorResponse(Response::HTTP_FORBIDDEN, 'You don not have access for create poli');
+        }
+
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'doctor_name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $data = $request->only(['name', 'doctor_name', 'image' /* Add other attributes here */]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/poli_images', $imageName);
+            $data['image'] = 'poli_images/'. $imageName;
+        }
+
+        $poli = Poli::create($data);
+
+        return $this->successResponse(Response::HTTP_CREATED, 'Poli created successfully.', new PoliResource($poli));
+    }
+
 }

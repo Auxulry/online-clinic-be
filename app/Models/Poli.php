@@ -11,6 +11,7 @@ class Poli extends Model
 
     protected $fillable = [
         'name',
+        'doctor_name',
         'image'
     ];
 }

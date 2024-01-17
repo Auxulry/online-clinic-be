@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('polis', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('doctor_name');
             $table->text('image');
             $table->timestamps();
         });
